@@ -1,0 +1,104 @@
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+  }
+  
+  nav div:first-child img {
+    width: 50px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .media-icons {
+    display: flex;
+  }
+  
+  .media-icons a {
+    color: #fff;
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  /* Main styles */
+  main {
+    padding: 20px;
+  }
+  
+  /* Hero section */
+  #hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  #hero-greetings {
+    color: #333;
+  }
+  
+  #hero-greetings .teks-satu {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #hero-greetings .teks-dua {
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  #hero-greetings .teks-tiga {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  #hero-image img {
+    border-radius: 5px;
+  }

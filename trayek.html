@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Dinas Perhubungan Kota Serang</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="stylesheet" href="style.css" />
+	<style>
+	.dropdown {position: relative;display: inline-block;}.dropdown-content {display: none;position: absolute;background-color: #f9f9f9;min-width: 160px;box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);z-index: 999;}.dropdown-content a {color: black;padding: 12px 16px;text-decoration: none;display: block;}.dropdown:hover .dropdown-content {display: block;}#navbar {display: flex;align-items: center;}#navbar ul {list-style-type: none;margin: 0;padding: 0;display: flex;}#navbar li {margin-right: 10px;}#navbar li a {display: block;text-align: center;padding: 14px 16px;text-decoration: none;}#navbar li a:hover {background-color: #ddd;}.media-icons {margin-left: auto;margin-right:50px;font-size:1.4em}#navbar li a:hover{color:black}.dropbtn a, a.dropbtn{color:whitesmoke}
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+	.leaflet-container {
+		height: 400px;
+		width: 600px;
+		max-width: 100%;
+		max-height: 100%;
+	}
+	</style>
+	
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+	
+</head>
+<body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <div>
+          <a href="./index.html"><img src="./image/dishub.jpg" alt="logo dishub"/></a>
+        </div>
+        <div id="navbar">
+          <ul>
+            <li class="dropbtn"><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">Menu</a>
+              <div class="dropdown-content">
+                <a href="profil_instansi.html">profil instansi</a>
+                <a href="profil_penulis.html">profil penulis</a>
+                <a href="contact.html">Contact</a>
+              </div>
+            </li>
+			<li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">Peta</a>
+              <div class="dropdown-content">
+                <a href="kemacetan.html">Lokasi Kemacetan</a>
+                <a href="kecelakaan.html">Lokasi Rawan Kecelakaan</a>
+                <a href="trayek.html">Trayek Angkutan Kota</a>
+				<a href="halte.html">Halte Kota Serang</a>
+              </div>
+            </li>
+            <!-- li><a href="index_maps.html">Maps</a></li -->
+          </ul>
+        </div>
+        <div class="media-icons">
+          <span>Trayek Angkutan Kota</span>
+        </div>
+      </nav>
+    </header>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+
+	const map = L.map('map').setView([-6.106283, 106.175724], 13);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	$.get('data_trayek.csv', function(csvString) {
+		var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+
+		for (var i in data) {
+			var row = data[i];
+
+			var marker = L.marker([row.Latitude, row.Longitude], {
+				opacity: 1
+				}).bindPopup(row.Trayek);
+      
+			marker.addTo(map);
+		}
+
+	});
+
+</script>
+
+
+
+</body>
+</html>
